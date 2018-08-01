@@ -6,7 +6,12 @@ import{RouterModule, Routes, ROUTES} from '@angular/router';
 import { FormControl} from '@angular/forms';
 import { NextpageComponent } from './nextpage/nextpage.component';
 import { EditComponent } from './edit/edit.component';
-const routes:Routes=[
+const router:Routes=[
+  {
+    path: '',
+    component:EditComponent 
+  },
+  
   {
     path:'nextpage',
     component:NextpageComponent
@@ -14,8 +19,8 @@ const routes:Routes=[
   {
     path:'edit',
     component:EditComponent 
-  },
-  
+  }
+ 
 ];
 @NgModule({
   declarations: [
@@ -27,7 +32,7 @@ const routes:Routes=[
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(router),
     FormsModule
   ],
   providers: [],

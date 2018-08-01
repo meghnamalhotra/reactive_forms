@@ -8,8 +8,8 @@ import {Route, Router} from '@angular/router';
 export class AppComponent implements OnInit {
 
   ngOnInit(){
-    this.route.navigate(['/edit'])  }
-  
+    //this.route.navigate(['/edit'])  
+  }
   constructor(private route:Router) {
   }
 }

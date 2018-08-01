@@ -1,76 +1,83 @@
 The content below is only a placeholder and can be replaced.
 <div style="text-align:center">
- 
+
   <h1>
     Welcome to {{ title }}!
   </h1>
-  <form [formGroup]="loginform">
-  <div>
-   
-
-    <label>
-      First Name:
-      <input type="text" formControlName="firstname" >
-      <span *ngIf="!loginform.controls['firstname'].valid">*</span>
-    </label>
-    
-    <label>
-      Last Name:
-      <input type="text" formControlName="lastname" > 
-      <span *ngIf="!loginform.controls['lastname'].valid">*</span>
-    </label>
+  <form [formGroup]="loginform" (ngSubmit)="store()">
+    <div>
 
 
-  </div>
-  <br />
-  <div>
-    <label>
-      Email:
-      <input type="email" formControlName="email">
-      <span *ngIf="!loginform.controls['email'].valid">*</span>
-    </label>
-
-    <label>
-      Contact no.:
-      <input type="text" formControlName="number" >
-      <span *ngIf= "!loginform.controls['number'].valid">*</span>
-    </label>
-  </div>
-  <br />
-  <div>
-
-    <label>
-      Password:
-      <input type="password" formControlName="pass" >
-      <span *ngIf="!loginform.controls['pass'].valid">*</span>
-    </label>
+      <label>
+        First Name:
+        <input type="text" formControlName="firstname">
+        <span *ngIf="!loginform.controls['firstname'].valid  && (loginform.controls['firstname'].dirty || loginform.controls['firstname'].touched)">"Please enter alphabets only."</span>
+      </label>
+      <br />
+      <br />
+      <label>
+        Last Name:
+        <input type="text" formControlName="lastname">
+        <span *ngIf="!loginform.controls['lastname'].valid  && (loginform.controls['lastname'].dirty || loginform.controls['lastname'].touched) ">"Please enter alphabets only."</span>
+      </label>
 
 
-    <label>
-      Confirm Password:
-      <input type="password" formControlName="passcon">
-      <span *ngIf="!loginform.controls['passcon'].valid" onkeyup="pass()">*</span>
-    </label>
+    </div>
+    <br />
+    <div>
+      <label>
+        Email:
+        <input type="email" formControlName="email">
+        <span *ngIf="!loginform.controls['email'].valid && (loginform.controls['email'].dirty || loginform.controls['email'].touched)">"Please enter a valid email address."</span>
+      </label>
+      <br />
+      <br />
+      <label>
+        Contact no.:
+        <input type="text" formControlName="number">
+        <span *ngIf="!loginform.controls['number'].valid  && (loginform.controls['number'].dirty || loginform.controls['number'].touched)">"Please enter 10 digit contact number"!</span>
+      </label>
+    </div>
+    <br />
+    <div>
+
+      <label>
+        Password:
+
+        <input type="{{type}}" formControlName="pass" ><i class="far fa-eye"(click)="toggle()"></i>
+        <span *ngIf="!loginform.controls['pass'].valid   && (loginform.controls['pass'].dirty || loginform.controls['pass'].touched)">Invalid Password!</span>
+      </label>
+      <br />
+      <br />
+
+      <label>
+        Confirm Password:
+        <input type="{{type}}" formControlName="passcon" (keyup)="pass1()"><i (click)="toggle()"></i>
+        <span *ngIf="!test && (loginform.controls['passcon'].dirty || loginform.controls['passcon'].touched) ">Wrong Password!</span>
+
+      </label>
 
 
-  </div>
-  <br />
-  <div>
-    <label>
-      Empid:
-      <input type="text" formControlName="empid" required>
-      <span *ngIf="!loginform.controls['empid'].valid">*</span>
-    </label>
-     <label>
-       Gender:
-      <input type="text" formControlName="gen" required>
-      <span *ngIf="!loginform.controls['gen'].valid">*</span>
-    </label>
-  </div>
-  <br />
-  <div>
-    <button type="submit" [disabled]="!loginform.valid" (click)="store()" >Submit</button>
-  </div>
+    </div>
+    <br />
+    <div>
+      <label>
+        Empid:
+        <input type="text" formControlName="empid" required>
+        <span *ngIf="!loginform.controls['empid'].valid   && (loginform.controls['empid'].dirty || loginform.controls['empid'].touched)">Empid:-Digits[0-9] only four digits!</span>
+      </label>
+      <br />
+      <br />
+      <label>
+        Gender:
+        <input type="text" formControlName="gen" required>
+        <span *ngIf="!loginform.controls['gen'].valid  && (loginform.controls['gen'].dirty || loginform.controls['gen'].touched)">Gender:-Alphabets[A-Z a-z]</span>
+      </label>
+    </div>
+    <br />
+    <div>
+      <button type="submit" [disabled]="!loginform.valid">Submit</button>
+    </div>
 
-</form>
+  </form>
 </div>

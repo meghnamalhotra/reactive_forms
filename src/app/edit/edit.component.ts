@@ -10,23 +10,34 @@ import{ Router } from '@angular/router';
 export class EditComponent implements OnInit {
   loginform:FormGroup;
   title = 'my-reactive-app';
- 
+   test:boolean
+   type:string="password"
+   
+
     store()
     {
       localStorage.setItem("Data",JSON.stringify(this.loginform.value));
       this.nextpage();
     }
-    pass()
+    toggle()
+    {
+      if(this.type === "password")
+     this.type="Text";
+     else
+     this.type="password";
+    }
+    
+    pass1()
     {
       if(this.loginform.value.pass!==this.loginform.value.passcon)
       {
-        return false;
+        this.test= false;
       }
       else{
-        return true;
+        this.test=true;
       }
     }
-  constructor(private route:Router) {
+  constructor(private router:Router) {
     this.loginform = new FormGroup({
       firstname: new FormControl('', [
         Validators.required, Validators.pattern("^[a-zA-Z]+$")
@@ -62,14 +73,14 @@ export class EditComponent implements OnInit {
     
      
   }
-
+  
   nextpage()
   {
-    this.route.navigate(['/nextpage'])
+    this.router.navigate(['/nextpage'])
   }
 
   ngOnInit() {
-    if(this.route.url==='/nextpage')
+    if(this.router.url==='/edit')
     
     {
       var data=JSON.parse(localStorage.getItem("Data"));
@@ -78,12 +89,12 @@ export class EditComponent implements OnInit {
       this.loginform.patchValue({
         firstname: data.firstname,
         lastname: data.lastname,
-        contact:data.number,
-        Gender:data.gen,
-        EmpId:data.empid,
-        Email:data.email,
-        password:data.pass,
-        checkpassword:data.passcon
+        number:data.number,
+        gen:data.gen,
+        empid:data.empid,
+      email:data.email,
+        pass:data.pass,
+        passcon:data.passcon
       });
     }
     else
