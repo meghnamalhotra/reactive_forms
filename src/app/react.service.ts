@@ -13,7 +13,7 @@ export class ReactService {
    localStorage.setItem("Data",JSON.stringify(this.Data));
   }
   getData(){
-    return this.Data
+    return this.Data || localStorage.getItem("Data")
   }
   
 

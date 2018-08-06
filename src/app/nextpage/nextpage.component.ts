@@ -19,7 +19,7 @@ export class NextpageComponent implements OnInit {
   }
   editform()
   {
-    this.router.navigate(['edit']);
+    this.router.navigate(['/edit']);
   }
   data:any;
   ngOnInit() {
